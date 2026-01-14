@@ -1,103 +1,124 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Ville Verte FR</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #2ecc71, #27ae60);
-      color: white;
-      text-align: center;
-    }
-    .box {
-      background: white;
-      color: #333;
-      padding: 30px;
-      margin: 60px auto;
-      width: 90%;
-      max-width: 400px;
-      border-radius: 12px;
-    }
-    input {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-    }
-    button {
-      padding: 10px 20px;
-      background: #27ae60;
-      color: white;
-      border: none;
-      cursor: pointer;
-      border-radius: 6px;
-    }
-    button:hover {
-      background: #219150;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Ville Verte FR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: white;
+  text-align: center;
+}
+
+.box {
+  background: white;
+  color: #333;
+  padding: 25px;
+  margin: 40px auto;
+  width: 90%;
+  max-width: 450px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+input, button {
+  margin: 10px 0;
+}
+
+button {
+  padding: 12px 25px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+video {
+  width: 100%;
+  margin-top: 15px;
+  border-radius: 12px;
+}
+</style>
 </head>
 
 <body>
 
+<!-- LOGIN -->
 <div id="login" class="box">
   <h2>🌿 Ville Verte FR</h2>
-  <p>Inscription rapide / تسجيل سريع / Quick signup</p>
-  <input type="text" id="username" placeholder="Votre nom / اسمك / Your name">
+  <p>Inscription rapide</p>
+  <input type="text" id="username" placeholder="Votre nom">
   <br>
   <button onclick="login()">Entrer</button>
 </div>
 
+<!-- SITE -->
 <div id="site" style="display:none">
+
   <div class="box">
-    <h1>Bienvenue 🌱</h1>
+    <h2>👋 Bienvenue</h2>
     <p id="welcome"></p>
+  </div>
 
-    <h3>🇫🇷 Français</h3>
-    <p>Merci de participer à une initiative pour une ville plus propre.</p>
+  <div class="box">
+    <h3>🎥 Partagez votre action</h3>
 
-    <h3>🇸🇦 العربية</h3>
-    <p>شكرًا لمشاركتك في مبادرة من أجل مدينة أنظف.</p>
+    <p>
+      🇫🇷 Vidéo personnelle, sans visage, sans propos offensants.<br>
+      🇸🇦 فيديو من تصويرك، بدون وجوه، بدون كلام مسيء.<br>
+      🇬🇧 Personal video only, no faces, no offensive content.
+    </p>
 
-    <h3>🇬🇧 English</h3>
-    <p>Thank you for joining an initiative for a cleaner city.</p>
+    <input type="file" accept="video/*" onchange="previewVideo(event)">
+    <video id="video" controls style="display:none"></video>
+  </div>
 
-    <br>
+  <div class="box">
     <button onclick="logout()">Déconnexion</button>
   </div>
+
 </div>
 
 <script>
-  function login() {
-    const name = document.getElementById("username").value;
-    if (name.trim() === "") {
-      alert("Veuillez entrer un nom");
-      return;
-    }
-    localStorage.setItem("vv_user", name);
-    showSite();
+function login() {
+  const name = document.getElementById("username").value;
+  if (name.trim() === "") {
+    alert("Veuillez entrer un nom");
+    return;
   }
-
-  function logout() {
-    localStorage.removeItem("vv_user");
-    location.reload();
-  }
-
-  function showSite() {
-    const user = localStorage.getItem("vv_user");
-    if (user) {
-      document.getElementById("login").style.display = "none";
-      document.getElementById("site").style.display = "block";
-      document.getElementById("welcome").innerText =
-        "👋 " + user;
-    }
-  }
-
+  localStorage.setItem("vv_user", name);
   showSite();
+}
+
+function logout() {
+  localStorage.removeItem("vv_user");
+  location.reload();
+}
+
+function showSite() {
+  const user = localStorage.getItem("vv_user");
+  if (user) {
+    document.getElementById("login").style.display = "none";
+    document.getElementById("site").style.display = "block";
+    document.getElementById("welcome").innerText = user;
+  }
+}
+
+function previewVideo(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  const video = document.getElementById("video");
+  video.src = URL.createObjectURL(file);
+  video.style.display = "block";
+}
+
+showSite();
 </script>
 
 </body>
 </html>
-
