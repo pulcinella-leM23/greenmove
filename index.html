@@ -7,93 +7,67 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f0f8f5;
-      margin: 0;
-      padding: 0;
+      background: #f0f9f4;
       text-align: center;
-    }
-    header {
-      background: #2e8b57;
-      color: white;
       padding: 20px;
     }
-    .container {
+    .box {
+      background: white;
       padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+      margin: auto;
     }
     input, button {
+      width: 90%;
       padding: 10px;
-      margin: 5px;
-      width: 80%;
-      max-width: 300px;
-    }
-    button {
-      background: #2e8b57;
-      color: white;
-      border: none;
-      cursor: pointer;
+      margin: 10px 0;
     }
     video {
-      width: 90%;
-      max-width: 400px;
+      width: 100%;
       margin-top: 10px;
-    }
-    .hidden {
-      display: none;
     }
   </style>
 </head>
-
 <body>
 
-<header>
-  <h1>🌱 GreenMove</h1>
-  <p>Clean • Record • Inspire</p>
-</header>
+<div class="box">
+  <h2>🌱 GreenMove</h2>
 
-<div class="container" id="login">
-  <h2>🔐 تسجيل / Inscription / Login</h2>
-  <input id="username" placeholder="Nom / الاسم / Name">
-  <input id="pin" type="password" placeholder="PIN">
-  <button onclick="login()">دخول / Entrer / Enter</button>
-</div>
-
-<div class="container hidden" id="app">
-  <h2>🎥 شارك فيديو نظافة</h2>
   <p>
-    🇫🇷 Filmez une action écologique<br>
-    🇸🇦 صوّر وأنت تنظف البيئة<br>
-    🇬🇧 Record yourself cleaning nature
+    <b>Français:</b> Inscrivez-vous pour participer<br>
+    <b>العربية:</b> سجّل للمشاركة في تنظيف البيئة<br>
+    <b>English:</b> Register to clean your environment
   </p>
 
-  <input type="file" accept="video/*" onchange="previewVideo(event)">
-  <video id="video" controls class="hidden"></video>
+  <input type="text" id="name" placeholder="Nom / الاسم / Name">
+  <input type="password" id="pin" placeholder="PIN">
+  <button onclick="login()">Entrer / دخول / Enter</button>
 
-  <p>⚠️ لا تصوير الوجوه – لا كلام مسيء</p>
+  <div id="content" style="display:none;">
+    <h3>🎥 Ajouter une vidéo</h3>
+    <input type="file" accept="video/*" onchange="loadVideo(event)">
+    <video id="video" controls></video>
+  </div>
 </div>
 
 <script>
-  function login() {
-    const user = document.getElementById("username").value;
-    const pin = document.getElementById("pin").value;
-    if (user && pin) {
-      localStorage.setItem("gm_user", user);
-      document.getElementById("login").classList.add("hidden");
-      document.getElementById("app").classList.remove("hidden");
-    } else {
-      alert("أدخل الاسم و PIN");
-    }
-  }
+function login() {
+  const name = document.getElementById('name').value;
+  const pin = document.getElementById('pin').value;
 
-  function previewVideo(event) {
-    const video = document.getElementById("video");
-    video.src = URL.createObjectURL(event.target.files[0]);
-    video.classList.remove("hidden");
+  if (name && pin) {
+    document.getElementById('content').style.display = 'block';
+    alert("Bienvenue " + name);
+  } else {
+    alert("Veuillez remplir tous les champs");
   }
+}
 
-  if (localStorage.getItem("gm_user")) {
-    document.getElementById("login").classList.add("hidden");
-    document.getElementById("app").classList.remove("hidden");
-  }
+function loadVideo(event) {
+  const video = document.getElementById('video');
+  video.src = URL.createObjectURL(event.target.files[0]);
+}
 </script>
 
 </body>
