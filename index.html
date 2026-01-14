@@ -1,75 +1,132 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>GreenMove</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f9f4;
-      text-align: center;
-      padding: 20px;
-    }
-    .box {
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 400px;
-      margin: auto;
-    }
-    input, button {
-      width: 90%;
-      padding: 10px;
-      margin: 10px 0;
-    }
-    video {
-      width: 100%;
-      margin-top: 10px;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>GreenMove – Clean & Earn</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* ===== RESET ===== */
+* {
+  box-sizing: border-box;
+}
+
+/* ===== BODY ===== */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(120deg, #e8f5e9, #ffffff);
+  animation: fadeIn 1s ease-in;
+}
+
+/* ===== ANIMATION ===== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 420px;
+  margin: 60px auto;
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+  animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* ===== TITLES ===== */
+h1 {
+  text-align: center;
+  color: #2e7d32;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* ===== INPUTS ===== */
+input {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+/* ===== BUTTON ===== */
+button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  border-radius: 10px;
+  border: none;
+  font-size: 15px;
+  background: #2e7d32;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+button:hover {
+  background: #256628;
+  transform: scale(1.03);
+}
+
+/* ===== INFO BOX ===== */
+.info {
+  background: #f1f8f4;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  margin-top: 18px;
+  line-height: 1.6;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  margin-top: 22px;
+  text-align: center;
+  font-size: 12px;
+  color: #666;
+}
+</style>
 </head>
+
 <body>
 
-<div class="box">
-  <h2>🌱 GreenMove</h2>
-
-  <p>
-    <b>Français:</b> Inscrivez-vous pour participer<br>
-    <b>العربية:</b> سجّل للمشاركة في تنظيف البيئة<br>
-    <b>English:</b> Register to clean your environment
-  </p>
-
-  <input type="text" id="name" placeholder="Nom / الاسم / Name">
-  <input type="password" id="pin" placeholder="PIN">
-  <button onclick="login()">Entrer / دخول / Enter</button>
-
-  <div id="content" style="display:none;">
-    <h3>🎥 Ajouter une vidéo</h3>
-    <input type="file" accept="video/*" onchange="loadVideo(event)">
-    <video id="video" controls></video>
+<div class="container">
+  <h1>🌱 GreenMove</h1>
+  <div class="subtitle">
+    Clean your city • Nettoyez votre ville • نظف مدينتك
   </div>
+
+  <input placeholder="Nom / الاسم / Name">
+  <input type="password" placeholder="Code / رمز / Code">
+
+  <button>Entrer / دخول / Enter</button>
+
+  <div class="info">
+    🇫🇷 Projet écologique expérimental, sans valeur financière.<br>
+    🇦🇪 مشروع بيئي تجريبي بدون قيمة مالية.<br>
+    🇬🇧 Experimental ecological project with no financial value.
+  </div>
+
+  <footer>
+    GreenMove © 2026
+  </footer>
 </div>
-
-<script>
-function login() {
-  const name = document.getElementById('name').value;
-  const pin = document.getElementById('pin').value;
-
-  if (name && pin) {
-    document.getElementById('content').style.display = 'block';
-    alert("Bienvenue " + name);
-  } else {
-    alert("Veuillez remplir tous les champs");
-  }
-}
-
-function loadVideo(event) {
-  const video = document.getElementById('video');
-  video.src = URL.createObjectURL(event.target.files[0]);
-}
-</script>
 
 </body>
 </html>
-
