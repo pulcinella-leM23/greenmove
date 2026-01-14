@@ -2,104 +2,63 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>GreenMove – Clean & Earn</title>
+<title>GreenMove</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-/* ===== RESET ===== */
-* {
-  box-sizing: border-box;
-}
-
-/* ===== BODY ===== */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: linear-gradient(120deg, #e8f5e9, #ffffff);
-  animation: fadeIn 1s ease-in;
+  background: #e8f5e9;
 }
 
-/* ===== ANIMATION ===== */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* ===== CONTAINER ===== */
 .container {
   max-width: 420px;
   margin: 60px auto;
   background: white;
   padding: 25px;
-  border-radius: 16px;
-  box-shadow: 0 15px 30px rgba(0,0,0,0.12);
-  animation: slideUp 0.8s ease-out;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-@keyframes slideUp {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* ===== TITLES ===== */
 h1 {
   text-align: center;
   color: #2e7d32;
-  margin-bottom: 10px;
 }
 
-.subtitle {
-  text-align: center;
-  font-size: 13px;
-  color: #555;
-  margin-bottom: 20px;
-}
-
-/* ===== INPUTS ===== */
-input {
-  width: 100%;
-  padding: 12px;
-  margin-top: 12px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
+p {
   font-size: 14px;
-}
-
-/* ===== BUTTON ===== */
-button {
-  width: 100%;
-  padding: 12px;
-  margin-top: 15px;
-  border-radius: 10px;
-  border: none;
-  font-size: 15px;
-  background: #2e7d32;
-  color: white;
-  cursor: pointer;
-  transition: transform 0.2s, background 0.2s;
-}
-
-button:hover {
-  background: #256628;
-  transform: scale(1.03);
-}
-
-/* ===== INFO BOX ===== */
-.info {
-  background: #f1f8f4;
-  padding: 12px;
-  border-radius: 10px;
-  font-size: 13px;
-  margin-top: 18px;
   line-height: 1.6;
 }
 
-/* ===== FOOTER ===== */
+input, button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+button {
+  background: #2e7d32;
+  color: white;
+  border: none;
+  font-size: 15px;
+}
+
+.info {
+  background: #f1f8f4;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 15px;
+  font-size: 13px;
+}
+
 footer {
-  margin-top: 22px;
   text-align: center;
   font-size: 12px;
-  color: #666;
+  margin-top: 20px;
+  color: #555;
 }
 </style>
 </head>
@@ -108,9 +67,12 @@ footer {
 
 <div class="container">
   <h1>🌱 GreenMove</h1>
-  <div class="subtitle">
-    Clean your city • Nettoyez votre ville • نظف مدينتك
-  </div>
+
+  <p>
+    🇫🇷 Participez à une expérience écologique locale.<br><br>
+    🇦🇪 شارك في تجربة بيئية محلية.<br><br>
+    🇬🇧 Join a local ecological experiment.
+  </p>
 
   <input placeholder="Nom / الاسم / Name">
   <input type="password" placeholder="Code / رمز / Code">
@@ -118,9 +80,9 @@ footer {
   <button>Entrer / دخول / Enter</button>
 
   <div class="info">
-    🇫🇷 Projet écologique expérimental, sans valeur financière.<br>
-    🇦🇪 مشروع بيئي تجريبي بدون قيمة مالية.<br>
-    🇬🇧 Experimental ecological project with no financial value.
+    🇫🇷 Aucun argent, aucun investissement.<br>
+    🇦🇪 لا أموال ولا استثمار.<br>
+    🇬🇧 No money, no investment.
   </div>
 
   <footer>
