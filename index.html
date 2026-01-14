@@ -2,130 +2,211 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>GreenMove – Clean & Act</title>
+<title>GreenMove – Clean & Share</title>
+
 <style>
 body {
   font-family: Arial, sans-serif;
-  background: #f2f6f5;
+  background: #eef5f0;
   margin: 0;
   padding: 20px;
 }
-.container {
+
+.box {
   max-width: 900px;
   background: white;
   margin: auto;
   padding: 25px;
-  border-radius: 8px;
+  border-radius: 10px;
 }
-h1 {
+
+h1, h2 {
   color: #2e7d32;
-  text-align: center;
 }
-h2 {
-  color: #333;
+
+button {
+  background: #2e7d32;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
 }
+
+input {
+  width: 100%;
+  padding: 8px;
+}
+
 hr {
   margin: 30px 0;
 }
-ul {
-  line-height: 1.8;
-}
-.notice {
-  background: #eef5ee;
-  padding: 15px;
-  border-left: 5px solid #2e7d32;
-  margin-top: 20px;
+
+.small {
+  font-size: 14px;
+  color: #555;
 }
 </style>
 </head>
 
 <body>
-<div class="container">
 
-<h1>🌱 GreenMove</h1>
-<p style="text-align:center;"><strong>Clean your environment. Act for the planet.</strong></p>
+<!-- LOGIN -->
+<div id="login" class="box">
+  <h1>🌱 GreenMove</h1>
 
-<hr>
+  <p><b>
+  Register / تسجيل / Inscription
+  </b></p>
 
-<!-- Arabic -->
-<h2>🇦🇪 العربية</h2>
-<p>
-<strong>GreenMove</strong> هو برنامج تجريبي مجاني يكافئ الأفراد على القيام بأعمال بيئية إيجابية
-مثل تنظيف الأماكن العامة والمساهمة في حماية البيئة.
-</p>
+  <input id="user" placeholder="Username / اسم المستخدم">
+  <br><br>
+  <button onclick="enter()">Enter / دخول</button>
 
-<h3>كيف تشارك؟</h3>
-<ul>
-  <li>نظّف مكانًا عامًا (شارع، حديقة، شاطئ...)</li>
-  <li>صوّر فيديو قصير يثبت العمل</li>
-  <li>ارفع الفيديو على الموقع</li>
-  <li>تحصل على توكنات GreenMove رمزية</li>
-</ul>
-
-<h3>القواعد</h3>
-<ul>
-  <li>تصوير الوجوه غير إجباري</li>
-  <li>يُمنع الكلام البذيء أو الجارح</li>
-  <li>الفيديو دليل على العمل فقط</li>
-  <li>لا بيع، لا استثمار، لا أموال</li>
-</ul>
-
-<hr>
-
-<!-- French -->
-<h2>🇫🇷 Français</h2>
-<p>
-<strong>GreenMove</strong> est un programme expérimental gratuit qui récompense
-les actions écologiques positives comme le nettoyage des espaces publics.
-</p>
-
-<h3>Comment participer ?</h3>
-<ul>
-  <li>Nettoyez un lieu public (rue, parc, plage…)</li>
-  <li>Enregistrez une courte vidéo comme preuve</li>
-  <li>Envoyez la vidéo via le site</li>
-  <li>Recevez des GreenMove Tokens symboliques</li>
-</ul>
-
-<h3>Règles</h3>
-<ul>
-  <li>Les visages ne sont pas obligatoires</li>
-  <li>Aucun langage offensant ou inapproprié</li>
-  <li>La vidéo sert uniquement de preuve</li>
-  <li>Aucune vente, aucun investissement, aucun paiement</li>
-</ul>
-
-<hr>
-
-<!-- English -->
-<h2>🇬🇧 English</h2>
-<p>
-<strong>GreenMove</strong> is a free experimental program that rewards positive
-environmental actions such as cleaning public spaces.
-</p>
-
-<h3>How does it work?</h3>
-<ul>
-  <li>Clean a public place (street, park, beach…)</li>
-  <li>Record a short video as proof</li>
-  <li>Upload the video to the website</li>
-  <li>Receive symbolic GreenMove Tokens</li>
-</ul>
-
-<h3>Rules</h3>
-<ul>
-  <li>Showing faces is optional</li>
-  <li>No offensive or abusive language</li>
-  <li>The video is used only as proof</li>
-  <li>No selling, no investment, no money involved</li>
-</ul>
-
-<div class="notice">
-<strong>Legal Notice:</strong><br>
-GreenMove is a non-commercial experimental project.  
-Tokens have no monetary value and are used only within the program.
+  <p class="small">
+  No password • No email • Free ecological initiative
+  </p>
 </div>
 
+<!-- MAIN SITE -->
+<div id="site" class="box" style="display:none;">
+
+<h1>🌍 GreenMove – Clean & Share</h1>
+
+<!-- INTRO -->
+<h2>🌱 What is GreenMove?</h2>
+
+<p><b>English:</b><br>
+GreenMove is a free ecological community experiment.
+You clean your environment, record a short video, publish it publicly,
+and share the link here to inspire others.
+</p>
+
+<p><b>Français :</b><br>
+GreenMove est une expérience écologique communautaire gratuite.
+Vous nettoyez votre environnement, filmez une courte vidéo,
+la publiez publiquement et partagez le lien ici pour inspirer les autres.
+</p>
+
+<p><b>العربية:</b><br>
+GreenMove تجربة بيئية مجتمعية مجانية.
+تقوم بتنظيف بيئتك، تصوّر فيديو قصير،
+تنشره بشكل علني، ثم تشارك رابطه هنا لإلهام الآخرين.
+</p>
+
+<hr>
+
+<!-- HOW IT WORKS -->
+<h2>🛠️ How does it work?</h2>
+
+<p><b>English:</b><br>
+1. Register with a username<br>
+2. Clean a place (street, park, beach…)<br>
+3. Record a short video<br>
+4. Publish it (YouTube, TikTok, etc.)<br>
+5. Share the link on this page
+</p>
+
+<p><b>Français :</b><br>
+1. Inscription avec un nom d’utilisateur<br>
+2. Nettoyez un lieu (rue, parc, plage…)<br>
+3. Filmez une courte vidéo<br>
+4. Publiez-la (YouTube, TikTok…)<br>
+5. Partagez le lien sur cette page
+</p>
+
+<p><b>العربية:</b><br>
+1. التسجيل باسم مستخدم<br>
+2. تنظيف مكان (شارع، حديقة، شاطئ…)<br>
+3. تصوير فيديو قصير<br>
+4. نشره (يوتيوب، تيك توك…)<br>
+5. مشاركة الرابط في هذه الصفحة
+</p>
+
+<hr>
+
+<!-- RULES -->
+<h2>⚖️ Rules / Règles / القوانين</h2>
+
+<ul>
+<li>Only environmental actions – فقط أعمال بيئية – Actions écologiques uniquement</li>
+<li>No offensive or violent content – لا محتوى مسيء – Pas de contenu offensant</li>
+<li>Faces are optional – الوجوه غير إجبارية – Visages non obligatoires</li>
+<li>No bad language – لا كلام بذيء – Pas de langage vulgaire</li>
+<li>Videos must be public – الفيديو علني – Vidéo publique</li>
+</ul>
+
+<hr>
+
+<!-- FUTURE -->
+<h2>🚀 Future vision</h2>
+
+<p><b>English:</b><br>
+In the future, GreenMove may reward participants with symbolic tokens
+and collaborate with municipalities and local partners.
+</p>
+
+<p><b>Français :</b><br>
+À l’avenir, GreenMove pourra récompenser les participants avec des tokens symboliques
+et collaborer avec des municipalités et partenaires locaux.
+</p>
+
+<p><b>العربية:</b><br>
+في المستقبل، قد يقدم GreenMove مكافآت رمزية (توكن)
+ويتعاون مع البلديات والشركاء المحليين.
+</p>
+
+<hr>
+
+<!-- SHARE -->
+<h2>📤 Share your video link</h2>
+
+<input id="video" placeholder="Video link / رابط الفيديو">
+<br><br>
+<button onclick="add()">Share / مشاركة</button>
+
+<hr>
+
+<!-- LIST -->
+<h2>🎥 Community shares</h2>
+<div id="list"></div>
+
+<br>
+<button onclick="logout()">Logout</button>
+
 </div>
+
+<script>
+function enter() {
+  const u = document.getElementById("user").value;
+  if(u.trim()===""){ alert("Enter username"); return; }
+  localStorage.setItem("gm_user", u);
+  show();
+}
+
+function show(){
+  document.getElementById("login").style.display="none";
+  document.getElementById("site").style.display="block";
+}
+
+function logout(){
+  localStorage.removeItem("gm_user");
+  location.reload();
+}
+
+function add(){
+  const v = document.getElementById("video").value;
+  if(v==="") return;
+  const d = document.createElement("div");
+  d.innerHTML = "🎥 <a href='"+v+"' target='_blank'>Video link</a>";
+  document.getElementById("list").prepend(d);
+  document.getElementById("video").value="";
+}
+
+if(localStorage.getItem("gm_user")){
+  show();
+}
+</script>
+
 </body>
 </html>
