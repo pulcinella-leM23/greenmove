@@ -1,23 +1,46 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
 <meta charset="UTF-8">
+<title>Ville Verte FR – Initiative citoyenne</title>
 
-<title>Ville Verte FR – Initiative citoyenne pour une ville propre</title>
-
-<meta name="description" content="Ville Verte FR est une initiative citoyenne en France encourageant les habitants à nettoyer leur ville et protéger l’environnement.">
-
-<meta name="keywords" content="Ville Verte, nettoyage ville, écologie France, initiative citoyenne, environnement, ville propre">
-
-<meta name="author" content="Ville Verte FR">
+<meta name="description" content="Ville Verte FR encourage les citoyens à agir pour une ville plus propre grâce à un système de points symboliques.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta property="og:title" content="Ville Verte FR – Initiative écologique citoyenne">
-<meta property="og:description" content="Agissez pour une ville plus propre. Participez, nettoyez, partagez.">
-<meta property="og:type" content="website">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: white;
+  text-align: center;
+}
 
+.box {
+  background: white;
+  color: #333;
+  padding: 25px;
+  margin: 30px auto;
+  width: 90%;
+  max-width: 450px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+button {
+  padding: 10px 22px;
+  background: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+input {
+  margin: 10px 0;
+}
+</style>
 </head>
 
 <body>
@@ -37,22 +60,23 @@
   <div class="box">
     <h2>👋 Bienvenue</h2>
     <p id="welcome"></p>
+    <p>⭐ Points: <strong id="points">0</strong></p>
   </div>
 
   <div class="box">
-    <h3>🎥 Partagez votre action</h3>
-
+    <h3>🎥 Participez</h3>
     <p>
-      🇫🇷 Vidéo personnelle, sans visage, sans propos offensants.<br>
-      🇸🇦 فيديو من تصويرك، بدون وجوه، بدون كلام مسيء.<br>
-      🇬🇧 Personal video only, no faces, no offensive content.
+      🇫🇷 Vidéo personnelle, sans visage.<br>
+      🇸🇦 فيديو بدون وجوه.<br>
+      🇬🇧 Personal video, no faces.
     </p>
 
-    <input type="file" accept="video/*" onchange="previewVideo(event)">
-    <video id="video" controls style="display:none"></video>
+    <input type="file" accept="video/*" onchange="addPoints(event)">
+    <p id="msg"></p>
   </div>
 
   <div class="box">
+    <button onclick="resetPoints()">Réinitialiser les points</button><br><br>
     <button onclick="logout()">Déconnexion</button>
   </div>
 
@@ -66,11 +90,14 @@ function login() {
     return;
   }
   localStorage.setItem("vv_user", name);
+  if (!localStorage.getItem("vv_points")) {
+    localStorage.setItem("vv_points", "0");
+  }
   showSite();
 }
 
 function logout() {
-  localStorage.removeItem("vv_user");
+  localStorage.clear();
   location.reload();
 }
 
@@ -80,15 +107,25 @@ function showSite() {
     document.getElementById("login").style.display = "none";
     document.getElementById("site").style.display = "block";
     document.getElementById("welcome").innerText = user;
+    document.getElementById("points").innerText =
+      localStorage.getItem("vv_points");
   }
 }
 
-function previewVideo(event) {
-  const file = event.target.files[0];
-  if (!file) return;
-  const video = document.getElementById("video");
-  video.src = URL.createObjectURL(file);
-  video.style.display = "block";
+function addPoints(event) {
+  if (!event.target.files[0]) return;
+
+  let pts = parseInt(localStorage.getItem("vv_points"));
+  pts += 10;
+  localStorage.setItem("vv_points", pts);
+  document.getElementById("points").innerText = pts;
+  document.getElementById("msg").innerText =
+    "✅ +10 points ajoutés (symboliques)";
+}
+
+function resetPoints() {
+  localStorage.setItem("vv_points", "0");
+  document.getElementById("points").innerText = "0";
 }
 
 showSite();
