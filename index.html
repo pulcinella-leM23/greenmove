@@ -2,8 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Ville Verte FR – Nettoyez votre ville</title>
-  <meta name="description" content="Ville Verte FR encourage les citoyens à nettoyer leur environnement et à agir pour une ville plus propre.">
+  <title>Ville Verte FR</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
@@ -13,64 +12,91 @@
       color: white;
       text-align: center;
     }
-    header {
-      padding: 60px 20px;
-    }
-    section {
+    .box {
       background: white;
       color: #333;
-      padding: 40px 20px;
-      margin: 20px;
+      padding: 30px;
+      margin: 60px auto;
+      width: 90%;
+      max-width: 400px;
       border-radius: 12px;
     }
-    h1 {
-      font-size: 2.5em;
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
     }
-    h2 {
-      color: #27ae60;
+    button {
+      padding: 10px 20px;
+      background: #27ae60;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 6px;
     }
-    footer {
-      padding: 20px;
-      font-size: 0.9em;
-      opacity: 0.8;
+    button:hover {
+      background: #219150;
     }
   </style>
 </head>
 
 <body>
 
-<header>
-  <h1>🌿 Ville Verte FR</h1>
-  <p>Agissez pour une ville plus propre</p>
-</header>
+<div id="login" class="box">
+  <h2>🌿 Ville Verte FR</h2>
+  <p>Inscription rapide / تسجيل سريع / Quick signup</p>
+  <input type="text" id="username" placeholder="Votre nom / اسمك / Your name">
+  <br>
+  <button onclick="login()">Entrer</button>
+</div>
 
-<section>
-  <h2>🇫🇷 Français</h2>
-  <p>
-    Ville Verte FR est une initiative citoyenne qui encourage les habitants à nettoyer leur environnement
-    et à agir concrètement pour une ville plus verte et plus propre.
-  </p>
-</section>
+<div id="site" style="display:none">
+  <div class="box">
+    <h1>Bienvenue 🌱</h1>
+    <p id="welcome"></p>
 
-<section>
-  <h2>🇸🇦 العربية</h2>
-  <p>
-    فيل فيرت فرنسا هي مبادرة مواطنة تشجع السكان على تنظيف بيئتهم
-    والمساهمة في بناء مدينة أنظف وأكثر خضرة.
-  </p>
-</section>
+    <h3>🇫🇷 Français</h3>
+    <p>Merci de participer à une initiative pour une ville plus propre.</p>
 
-<section>
-  <h2>🇬🇧 English</h2>
-  <p>
-    Ville Verte FR is a citizen initiative encouraging people to clean their environment
-    and take action for a greener and cleaner city.
-  </p>
-</section>
+    <h3>🇸🇦 العربية</h3>
+    <p>شكرًا لمشاركتك في مبادرة من أجل مدينة أنظف.</p>
 
-<footer>
-  © Ville Verte FR – Initiative citoyenne écologique
-</footer>
+    <h3>🇬🇧 English</h3>
+    <p>Thank you for joining an initiative for a cleaner city.</p>
+
+    <br>
+    <button onclick="logout()">Déconnexion</button>
+  </div>
+</div>
+
+<script>
+  function login() {
+    const name = document.getElementById("username").value;
+    if (name.trim() === "") {
+      alert("Veuillez entrer un nom");
+      return;
+    }
+    localStorage.setItem("vv_user", name);
+    showSite();
+  }
+
+  function logout() {
+    localStorage.removeItem("vv_user");
+    location.reload();
+  }
+
+  function showSite() {
+    const user = localStorage.getItem("vv_user");
+    if (user) {
+      document.getElementById("login").style.display = "none";
+      document.getElementById("site").style.display = "block";
+      document.getElementById("welcome").innerText =
+        "👋 " + user;
+    }
+  }
+
+  showSite();
+</script>
 
 </body>
 </html>
