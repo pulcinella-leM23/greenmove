@@ -7,6 +7,8 @@
 <meta name="description" content="Ville Verte FR est une initiative citoyenne écologique en France. Participez, agissez et suivez les actions locales.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#27ae60">
 
 <style>
 body {
@@ -157,6 +159,12 @@ function loadGallery() {
 }
 
 showSite();
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("service-worker.js");
+}
 </script>
 
 </body>
