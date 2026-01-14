@@ -1,220 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#2e7d32">
-
-<meta charset="UTF-8">
-<title>GreenMove – Clean & Share</title>
-
-<style>
-body {
-  font-family: Arial, sans-serif;
-  background: #eef5f0;
-  margin: 0;
-  padding: 20px;
-}
-
-.box {
-  max-width: 900px;
-  background: white;
-  margin: auto;
-  padding: 25px;
-  border-radius: 10px;
-}
-
-h1, h2 {
-  color: #2e7d32;
-}
-
-button {
-  background: #2e7d32;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-input {
-  width: 100%;
-  padding: 8px;
-}
-
-hr {
-  margin: 30px 0;
-}
-
-.small {
-  font-size: 14px;
-  color: #555;
-}
-</style>
+  <meta charset="UTF-8">
+  <title>GreenMove</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f0f8f5;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+    }
+    header {
+      background: #2e8b57;
+      color: white;
+      padding: 20px;
+    }
+    .container {
+      padding: 20px;
+    }
+    input, button {
+      padding: 10px;
+      margin: 5px;
+      width: 80%;
+      max-width: 300px;
+    }
+    button {
+      background: #2e8b57;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    video {
+      width: 90%;
+      max-width: 400px;
+      margin-top: 10px;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<div id="login" class="box">
+<header>
   <h1>🌱 GreenMove</h1>
+  <p>Clean • Record • Inspire</p>
+</header>
 
-  <p><b>
-  Register / تسجيل / Inscription
-  </b></p>
+<div class="container" id="login">
+  <h2>🔐 تسجيل / Inscription / Login</h2>
+  <input id="username" placeholder="Nom / الاسم / Name">
+  <input id="pin" type="password" placeholder="PIN">
+  <button onclick="login()">دخول / Entrer / Enter</button>
+</div>
 
-  <input id="user" placeholder="Username / اسم المستخدم">
-  <br><br>
-  <button onclick="enter()">Enter / دخول</button>
-
-  <p class="small">
-  No password • No email • Free ecological initiative
+<div class="container hidden" id="app">
+  <h2>🎥 شارك فيديو نظافة</h2>
+  <p>
+    🇫🇷 Filmez une action écologique<br>
+    🇸🇦 صوّر وأنت تنظف البيئة<br>
+    🇬🇧 Record yourself cleaning nature
   </p>
-</div>
 
-<!-- MAIN SITE -->
-<div id="site" class="box" style="display:none;">
+  <input type="file" accept="video/*" onchange="previewVideo(event)">
+  <video id="video" controls class="hidden"></video>
 
-<h1>🌍 GreenMove – Clean & Share</h1>
-
-<!-- INTRO -->
-<h2>🌱 What is GreenMove?</h2>
-
-<p><b>English:</b><br>
-GreenMove is a free ecological community experiment.
-You clean your environment, record a short video, publish it publicly,
-and share the link here to inspire others.
-</p>
-
-<p><b>Français :</b><br>
-GreenMove est une expérience écologique communautaire gratuite.
-Vous nettoyez votre environnement, filmez une courte vidéo,
-la publiez publiquement et partagez le lien ici pour inspirer les autres.
-</p>
-
-<p><b>العربية:</b><br>
-GreenMove تجربة بيئية مجتمعية مجانية.
-تقوم بتنظيف بيئتك، تصوّر فيديو قصير،
-تنشره بشكل علني، ثم تشارك رابطه هنا لإلهام الآخرين.
-</p>
-
-<hr>
-
-<!-- HOW IT WORKS -->
-<h2>🛠️ How does it work?</h2>
-
-<p><b>English:</b><br>
-1. Register with a username<br>
-2. Clean a place (street, park, beach…)<br>
-3. Record a short video<br>
-4. Publish it (YouTube, TikTok, etc.)<br>
-5. Share the link on this page
-</p>
-
-<p><b>Français :</b><br>
-1. Inscription avec un nom d’utilisateur<br>
-2. Nettoyez un lieu (rue, parc, plage…)<br>
-3. Filmez une courte vidéo<br>
-4. Publiez-la (YouTube, TikTok…)<br>
-5. Partagez le lien sur cette page
-</p>
-
-<p><b>العربية:</b><br>
-1. التسجيل باسم مستخدم<br>
-2. تنظيف مكان (شارع، حديقة، شاطئ…)<br>
-3. تصوير فيديو قصير<br>
-4. نشره (يوتيوب، تيك توك…)<br>
-5. مشاركة الرابط في هذه الصفحة
-</p>
-
-<hr>
-
-<!-- RULES -->
-<h2>⚖️ Rules / Règles / القوانين</h2>
-
-<ul>
-<li>Only environmental actions – فقط أعمال بيئية – Actions écologiques uniquement</li>
-<li>No offensive or violent content – لا محتوى مسيء – Pas de contenu offensant</li>
-<li>Faces are optional – الوجوه غير إجبارية – Visages non obligatoires</li>
-<li>No bad language – لا كلام بذيء – Pas de langage vulgaire</li>
-<li>Videos must be public – الفيديو علني – Vidéo publique</li>
-</ul>
-
-<hr>
-
-<!-- FUTURE -->
-<h2>🚀 Future vision</h2>
-
-<p><b>English:</b><br>
-In the future, GreenMove may reward participants with symbolic tokens
-and collaborate with municipalities and local partners.
-</p>
-
-<p><b>Français :</b><br>
-À l’avenir, GreenMove pourra récompenser les participants avec des tokens symboliques
-et collaborer avec des municipalités et partenaires locaux.
-</p>
-
-<p><b>العربية:</b><br>
-في المستقبل، قد يقدم GreenMove مكافآت رمزية (توكن)
-ويتعاون مع البلديات والشركاء المحليين.
-</p>
-
-<hr>
-
-<!-- SHARE -->
-<h2>📤 Share your video link</h2>
-
-<input id="video" placeholder="Video link / رابط الفيديو">
-<br><br>
-<button onclick="add()">Share / مشاركة</button>
-
-<hr>
-
-<!-- LIST -->
-<h2>🎥 Community shares</h2>
-<div id="list"></div>
-
-<br>
-<button onclick="logout()">Logout</button>
-
+  <p>⚠️ لا تصوير الوجوه – لا كلام مسيء</p>
 </div>
 
 <script>
-function enter() {
-  const u = document.getElementById("user").value;
-  if(u.trim()===""){ alert("Enter username"); return; }
-  localStorage.setItem("gm_user", u);
-  show();
-}
+  function login() {
+    const user = document.getElementById("username").value;
+    const pin = document.getElementById("pin").value;
+    if (user && pin) {
+      localStorage.setItem("gm_user", user);
+      document.getElementById("login").classList.add("hidden");
+      document.getElementById("app").classList.remove("hidden");
+    } else {
+      alert("أدخل الاسم و PIN");
+    }
+  }
 
-function show(){
-  document.getElementById("login").style.display="none";
-  document.getElementById("site").style.display="block";
-}
+  function previewVideo(event) {
+    const video = document.getElementById("video");
+    video.src = URL.createObjectURL(event.target.files[0]);
+    video.classList.remove("hidden");
+  }
 
-function logout(){
-  localStorage.removeItem("gm_user");
-  location.reload();
-}
-
-function add(){
-  const v = document.getElementById("video").value;
-  if(v==="") return;
-  const d = document.createElement("div");
-  d.innerHTML = "🎥 <a href='"+v+"' target='_blank'>Video link</a>";
-  document.getElementById("list").prepend(d);
-  document.getElementById("video").value="";
-}
-
-if(localStorage.getItem("gm_user")){
-  show();
-}
+  if (localStorage.getItem("gm_user")) {
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("app").classList.remove("hidden");
+  }
 </script>
-<script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js");
-}
-</script>
+
 </body>
 </html>
+
