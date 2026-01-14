@@ -1,98 +1,76 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>GreenMove</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-body{margin:0;font-family:Arial,sans-serif;background:#e8f5e9}
-.container{max-width:420px;margin:50px auto;background:#fff;padding:25px;border-radius:12px;box-shadow:0 10px 20px rgba(0,0,0,.1)}
-h1{text-align:center;color:#2e7d32}
-input,button{width:100%;padding:12px;margin-top:12px;border-radius:8px;border:1px solid #ccc}
-button{background:#2e7d32;color:#fff;border:none;font-size:15px;cursor:pointer}
-button:hover{background:#256628}
-.hidden{display:none}
-.info{background:#f1f8f4;padding:12px;border-radius:8px;margin-top:15px;font-size:13px;line-height:1.6}
-.error{color:#c62828;font-size:13px;margin-top:10px}
-video{width:100%;margin-top:15px;border-radius:10px}
-footer{text-align:center;font-size:12px;margin-top:20px;color:#555}
-</style>
+  <meta charset="UTF-8">
+  <title>Ville Verte FR – Nettoyez votre ville</title>
+  <meta name="description" content="Ville Verte FR encourage les citoyens à nettoyer leur environnement et à agir pour une ville plus propre.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #2ecc71, #27ae60);
+      color: white;
+      text-align: center;
+    }
+    header {
+      padding: 60px 20px;
+    }
+    section {
+      background: white;
+      color: #333;
+      padding: 40px 20px;
+      margin: 20px;
+      border-radius: 12px;
+    }
+    h1 {
+      font-size: 2.5em;
+    }
+    h2 {
+      color: #27ae60;
+    }
+    footer {
+      padding: 20px;
+      font-size: 0.9em;
+      opacity: 0.8;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- REGISTER -->
-<div class="container" id="register">
-<h1>🌱 GreenMove</h1>
-<p>🇫🇷 Inscription requise<br>🇦🇪 التسجيل إجباري<br>🇬🇧 Registration required</p>
-<input id="regName" placeholder="Nom / الاسم / Name">
-<input id="regCode" type="password" placeholder="Code / رمز / Code">
-<button onclick="register()">Register</button>
-<div class="error" id="regError"></div>
-</div>
+<header>
+  <h1>🌿 Ville Verte FR</h1>
+  <p>Agissez pour une ville plus propre</p>
+</header>
 
-<!-- LOGIN -->
-<div class="container hidden" id="login">
-<h1>🌱 GreenMove</h1>
-<p>🇫🇷 Connexion<br>🇦🇪 تسجيل الدخول<br>🇬🇧 Login</p>
-<input id="logName" placeholder="Nom / الاسم / Name">
-<input id="logCode" type="password" placeholder="Code / رمز / Code">
-<button onclick="login()">Enter</button>
-<div class="error" id="logError"></div>
-</div>
+<section>
+  <h2>🇫🇷 Français</h2>
+  <p>
+    Ville Verte FR est une initiative citoyenne qui encourage les habitants à nettoyer leur environnement
+    et à agir concrètement pour une ville plus verte et plus propre.
+  </p>
+</section>
 
-<!-- APP -->
-<div class="container hidden" id="app">
-<h1 id="welcome"></h1>
+<section>
+  <h2>🇸🇦 العربية</h2>
+  <p>
+    فيل فيرت فرنسا هي مبادرة مواطنة تشجع السكان على تنظيف بيئتهم
+    والمساهمة في بناء مدينة أنظف وأكثر خضرة.
+  </p>
+</section>
 
-<div class="info">
-🇫🇷 Choisissez une vidéo montrant une action écologique.<br>
-🇦🇪 اختر فيديو يُظهر عملًا بيئيًا.<br>
-🇬🇧 Choose a video showing an ecological action.<br><br>
-❗ Pas de visages • Pas de propos offensants<br>
-❗ بدون وجوه • بدون كلام مسيء<br>
-❗ No faces • No offensive content
-</div>
+<section>
+  <h2>🇬🇧 English</h2>
+  <p>
+    Ville Verte FR is a citizen initiative encouraging people to clean their environment
+    and take action for a greener and cleaner city.
+  </p>
+</section>
 
-<input type="file" accept="video/*" onchange="showVideo(event)">
-<video id="video" controls class="hidden"></video>
-
-<button onclick="logout()">Logout</button>
-<footer>GreenMove © 2026</footer>
-</div>
-
-<script>
-const user = JSON.parse(localStorage.getItem('greenmove_user'));
-
-if(user){show('login')}else{show('register')}
-
-function show(id){
-['register','login','app'].forEach(x=>document.getElementById(x).classList.add('hidden'));
-document.getElementById(id).classList.remove('hidden');
-}
-
-function register(){
-const n=regName.value.trim(),c=regCode.value.trim();
-if(!n||!c){regError.textContent='Fill all fields';return}
-localStorage.setItem('greenmove_user',JSON.stringify({n,c}));
-show('login');
-}
-
-function login(){
-const s=JSON.parse(localStorage.getItem('greenmove_user'));
-if(!s||logName.value!==s.n||logCode.value!==s.c){
-logError.textContent='Wrong name or code';return}
-welcome.textContent=`👋 Welcome ${s.n}`;
-show('app');
-}
-
-function logout(){show('login')}
-
-function showVideo(e){
-const v=document.getElementById('video');
-v.src=URL.createObjectURL(e.target.files[0]);
-v.classList.remove('hidden');
-}
-</script>
+<footer>
+  © Ville Verte FR – Initiative citoyenne écologique
+</footer>
 
 </body>
 </html>
