@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Ville Verte FR – Initiative citoyenne</title>
 
-<meta name="description" content="Ville Verte FR encourage les citoyens à agir pour une ville plus propre grâce à un système de points symboliques.">
+<meta name="description" content="Ville Verte FR est une initiative citoyenne écologique en France. Participez, agissez et suivez les actions locales.">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -21,9 +21,9 @@ body {
   background: white;
   color: #333;
   padding: 25px;
-  margin: 30px auto;
+  margin: 25px auto;
   width: 90%;
-  max-width: 450px;
+  max-width: 480px;
   border-radius: 16px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
 }
@@ -37,8 +37,12 @@ button {
   cursor: pointer;
 }
 
-input {
+.activity {
+  background: #f2f2f2;
   margin: 10px 0;
+  padding: 10px;
+  border-radius: 10px;
+  font-size: 0.9em;
 }
 </style>
 </head>
@@ -50,7 +54,7 @@ input {
   <h2>🌿 Ville Verte FR</h2>
   <p>Inscription rapide</p>
   <input type="text" id="username" placeholder="Votre nom">
-  <br>
+  <br><br>
   <button onclick="login()">Entrer</button>
 </div>
 
@@ -64,19 +68,23 @@ input {
   </div>
 
   <div class="box">
-    <h3>🎥 Participez</h3>
+    <h3>🎥 Participer</h3>
     <p>
-      🇫🇷 Vidéo personnelle, sans visage.<br>
-      🇸🇦 فيديو بدون وجوه.<br>
-      🇬🇧 Personal video, no faces.
+      🇫🇷 Action écologique personnelle.<br>
+      🇸🇦 عمل بيئي شخصي.<br>
+      🇬🇧 Personal eco action.
     </p>
 
-    <input type="file" accept="video/*" onchange="addPoints(event)">
+    <input type="file" accept="video/*" onchange="addAction()">
     <p id="msg"></p>
   </div>
 
   <div class="box">
-    <button onclick="resetPoints()">Réinitialiser les points</button><br><br>
+    <h3>📸 Galerie des actions</h3>
+    <div id="gallery"></div>
+  </div>
+
+  <div class="box">
     <button onclick="logout()">Déconnexion</button>
   </div>
 
@@ -92,6 +100,9 @@ function login() {
   localStorage.setItem("vv_user", name);
   if (!localStorage.getItem("vv_points")) {
     localStorage.setItem("vv_points", "0");
+  }
+  if (!localStorage.getItem("vv_gallery")) {
+    localStorage.setItem("vv_gallery", "[]");
   }
   showSite();
 }
@@ -109,23 +120,40 @@ function showSite() {
     document.getElementById("welcome").innerText = user;
     document.getElementById("points").innerText =
       localStorage.getItem("vv_points");
+    loadGallery();
   }
 }
 
-function addPoints(event) {
-  if (!event.target.files[0]) return;
-
+function addAction() {
   let pts = parseInt(localStorage.getItem("vv_points"));
   pts += 10;
   localStorage.setItem("vv_points", pts);
   document.getElementById("points").innerText = pts;
+
+  const gallery = JSON.parse(localStorage.getItem("vv_gallery"));
+  gallery.unshift({
+    user: localStorage.getItem("vv_user"),
+    date: new Date().toLocaleString(),
+    points: "+10"
+  });
+  localStorage.setItem("vv_gallery", JSON.stringify(gallery));
+
   document.getElementById("msg").innerText =
-    "✅ +10 points ajoutés (symboliques)";
+    "✅ Action enregistrée (+10 points)";
+  loadGallery();
 }
 
-function resetPoints() {
-  localStorage.setItem("vv_points", "0");
-  document.getElementById("points").innerText = "0";
+function loadGallery() {
+  const galleryDiv = document.getElementById("gallery");
+  galleryDiv.innerHTML = "";
+  const gallery = JSON.parse(localStorage.getItem("vv_gallery"));
+  gallery.forEach(item => {
+    const div = document.createElement("div");
+    div.className = "activity";
+    div.innerText =
+      "🌱 " + item.user + " – " + item.date + " – " + item.points;
+    galleryDiv.appendChild(div);
+  });
 }
 
 showSite();
